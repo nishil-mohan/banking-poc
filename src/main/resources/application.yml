@@ -1,0 +1,40 @@
+spring:
+
+
+  application:
+    name: core-banking-service
+
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+    jpa:
+      spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    console.enabled: true
+    console.path: /h2-console
+
+  flyway:
+    enabled: true
+
+  oauth2:
+    resource:
+      jwt:
+        key-uri: http://localhost:8080/oauth/token_key
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus, metrics, health
+logging:
+  level:
+    org:
+      springframework:
+        security: ERROR
+
